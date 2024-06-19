@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Veterinaria</title>
+    <link rel="stylesheet" href="Estiloform.css">
+</head>
+<body>
+    <header>
+        <h1 class="titulo">Veterinaria</h1>
+    </header>
+    <main>
+        <div>
+            <form id="formulario">
+                <div>
+                    <h3>Complete el Formulario</h3>
+                </div>
+                <input type="hidden" id="docId" name="docId">
+                
+                <div class="form-row">
+                    <div>
+                        <label>Nombre de dueño/a</label>
+                        <input type="text" id="Nombre" placeholder="Escribe tu Nombre" name="Nombre" class="burbuja-input">
+                    </div>
+                    <div>
+                        <label>RUT</label>
+                        <input type="text" id="Rut" placeholder="Escribe tu RUT" name="Rut" class="burbuja-input" maxlength="12">
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <input type="email" id="Correo" name="Correo" placeholder="Escribe tu correo electronico" class="burbuja-input">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Teléfono</label>
+                        <input type="tel" id="Telefono" name="Telefono" placeholder="Escribe tu teléfono" class="burbuja-input" maxlength="9">
+                    </div>
+                    <div>
+                        <label>Nombre de la Mascota</label>
+                        <input type="text" id="NombreMascota" placeholder="Nombre de la Mascota" name="NombreMascota" class="burbuja-input">
+                    </div>
+                    <div>
+                        <label>Especie de la Mascota</label>
+                        <input type="text" id="EspecieMascota" placeholder="Especie (e.g., perro, gato)" name="EspecieMascota" class="burbuja-input">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Raza de la Mascota</label>
+                        <input type="text" id="RazaMascota" placeholder="Raza de la Mascota" name="RazaMascota" class="burbuja-input">
+                        <p>Ponga "No" de no saber la raza</p>
+                    </div>
+                    <div>
+                        <label>Edad de la Mascota</label>
+                        <input type="number" id="EdadMascota" placeholder="Edad de la Mascota" name="EdadMascota" min="0" class="burbuja-input">
+                    </div>
+                    <div>
+                        <label>Peso de la Mascota</label>
+                        <input type="number" id="PesoMascota" placeholder="Peso en kg" name="PesoMascota" step="0.1" class="burbuja-input">
+                    </div>
+                </div>
+                <div>
+                    <label>Sexo de la Mascota</label>
+                    <p>
+                        <label><input type="radio" id="SexoMasculino" name="Sexo" value="Masculino"> Macho</label>
+                        <label><input type="radio" id="SexoHembra" name="Sexo" value="Hembra"> Hembra</label>
+                    </p>
+                </div>
+                <div>
+                    <label>Motivo de la Consulta</label>
+                    <textarea id="MotivoConsulta" name="MotivoConsulta" placeholder="Describe el motivo de la consulta" class="burbuja-textarea"></textarea>
+                </div>
+                <div>
+                    <label>Historial Médico de la Mascota</label>
+                    <textarea id="HistorialMedico" name="HistorialMedico" placeholder="Describa el historial médico de la mascota (opcional)" class="burbuja-textarea"></textarea>
+                </div>
+                <div>
+                    <label>Seleccionar Archivo</label>
+                    <p>(Si es que tiene exámenes o chequeos anteriores)</p>
+                    <input type="file" name="Archivos">
+                </div>
+                <div>
+                    <label>Fecha de la Consulta</label>
+                    <input type="date" id="FechaConsulta" name="FechaConsulta" class="burbuja-input">
+                </div>
+                <div>
+                    <input type="button" value="Limpiar" id="limpiarbtn" class="button2">
+                    <a href="bd/bd.html" class="button3">Ver base de datos</a>
+                    <input type="submit" value="Guardar" id="guardarbtn" class="button">
+                </div>
+            </form>
+        </div>
+        <a href="/Clase HTML/index.html" class="button4">Volver a pagina Inicial</a>
+    </main>
+    <script type="module" src="firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="funciones.js" type="module"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAHuIVk8CAgyFXAUdlVc1XGHqKGvIghCYs",
+            authDomain: "proyexct3.firebaseapp.com",
+            projectId: "proyexct3",
+            storageBucket: "proyexct3.appspot.com",
+            messagingSenderId: "855242504359",
+            appId: "1:855242504359:web:e65670a19fb5abc05a8382"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const id = localStorage.getItem('editingId');
+            if (id) {
+                const docSnap = await getDoc(doc(db, "Usuarios", id));
+                if (docSnap.exists()) {
+                    const emp = docSnap.data();
+
+                    document.getElementById('docId').value = id;
+                    document.getElementById('Nombre').value = emp.nombre;
+                    document.getElementById('Rut').value = emp.rut;
+                    document.getElementById('Correo').value = emp.correo;
+                    document.getElementById('Telefono').value = emp.telefono;
+                    document.getElementById('NombreMascota').value = emp.nommascota;
+                    document.getElementById('EspecieMascota').value = emp.especie;
+                    document.getElementById('RazaMascota').value = emp.raza;
+                    document.getElementById('EdadMascota').value = emp.edadMascota;
+                    document.getElementById('PesoMascota').value = emp.pesoMascota;
+                    document.getElementById('MotivoConsulta').value = emp.motivoConsulta;
+                    document.getElementById('HistorialMedico').value = emp.historialMedico || '';
+                    document.getElementById('FechaConsulta').value = emp.fecha;
+
+                    if (emp.sexo === 'Masculino') {
+                        document.getElementById('SexoMasculino').checked = true;
+                    } else if (emp.sexo === 'Femenino') {
+                        document.getElementById('SexoHembra').checked = true;
+                    }
+
+                    localStorage.removeItem('editingId');
+                }
+            }
+        });
+
+        document.getElementById('formulario').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const id = document.getElementById('docId').value;
+            const empData = {
+                nombre: document.getElementById('Nombre').value,
+                rut: document.getElementById('Rut').value,
+                correo: document.getElementById('Correo').value,
+                telefono: document.getElementById('Telefono').value,
+                nommascota: document.getElementById('NombreMascota').value,
+                especie: document.getElementById('EspecieMascota').value,
+                raza: document.getElementById('RazaMascota').value,
+                edadMascota: document.getElementById('EdadMascota').value,
+                pesoMascota: document.getElementById('PesoMascota').value,
+                motivoConsulta: document.getElementById('MotivoConsulta').value,
+                historialMedico: document.getElementById('HistorialMedico').value,
+                fecha: document.getElementById('FechaConsulta').value,
+                sexo: document.querySelector('input[name="Sexo"]:checked')?.value || ''
+            };
+
+            if (id) {
+                await updateDoc(doc(db, "Usuarios", id), empData);
+            } else {
+                await setDoc(doc(db, "Usuarios", empData.rut), empData);
+            }
+
+            Swal.fire({
+                title: "Guardado!",
+                text: "Los datos han sido guardados correctamente.",
+                icon: "success"
+            }).then(() => {
+                window.location.href = "bd.html"; 
+            });
+        });
+    </script>
+</body>
+</html>

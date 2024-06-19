@@ -1,0 +1,188 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(0, 0, 0);
+    font-family: Arial, sans-serif;
+}
+
+header {
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    padding: 30px;
+    text-align: center;
+}
+
+.titulo {
+    margin: 0;
+    font-size: 45px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(1,75,160);
+    box-shadow: 0 0 10px rgb(247, 0, 255);
+    font-style: italic;
+}
+
+form {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgb(1,75,160);
+    box-shadow: 0 0 10px rgb(247, 0, 255);
+}
+
+form h2 {
+    margin-top: 0;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.form-row > div {
+    flex: 1 1 30%;
+    min-width: 150px;
+    margin-right: 10px;
+}
+
+.burbuja-input, .burbuja-textarea {
+    width: 80%;
+    padding: 10px 20px;
+    border: 2px solid #000; 
+    border-radius: 15px; 
+    background-color: #fff; 
+    color: #000; 
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgb(247, 0, 255); 
+    transition: all 0.3s ease;
+}
+
+.burbuja-input:focus, .burbuja-textarea:focus {
+    outline: none; 
+    box-shadow: 0 6px 12px rgb(247, 0, 255); 
+}
+
+.burbuja-textarea {
+    min-height: 70px; 
+    resize: vertical; 
+}
+
+.bubble-textarea:focus {
+    outline: none; 
+    box-shadow: 0 6px 12px rgb(247, 0, 255);
+}
+
+.button {
+    padding: 5px 10px;
+    border: 2px solid #000; 
+    border-radius: 10px; 
+    background-color: rgb(1,75,160); 
+    color: #15f700; 
+    font-size: 25px;
+    box-shadow: 0 4px 8px rgb(0, 255, 0); 
+    transition: all 0.3s ease;
+    margin-left: 200px; 
+    margin-top: 20px;
+    transition: background-color 0.3s ease; 
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #ffffff; 
+    color: black;
+    box-shadow: 0 4px 8px rgb(247, 0, 255); 
+}
+
+.button2 {
+    padding: 5px 10px;
+    border: 2px solid #000; 
+    border-radius: 10px; 
+    background-color: rgb(1,75,160); 
+    color: #15f700; 
+    font-size: 25px;
+    box-shadow: 0 4px 8px rgb(0, 255, 0); 
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    transition: background-color 0.3s ease; 
+    cursor: pointer;
+}
+
+.button2:hover {
+    background-color: #ffffff; 
+    color: black;
+    box-shadow: 0 4px 8px rgb(247, 0, 255); 
+}
+
+.button3 {
+    padding: 5px 10px;
+    border: 2px solid #000; 
+    border-radius: 10px; 
+    background-color: rgb(1,75,160); 
+    color: #15f700; 
+    font-size: 25px;
+    box-shadow: 0 4px 8px rgb(0, 255, 0); 
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    margin-left: 200px;
+    transition: background-color 0.3s ease; 
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button3:hover {
+    background-color: #ffffff; 
+    color: black;
+    box-shadow: 0 4px 8px rgb(247, 0, 255); 
+}
+
+
+.button4 {
+    padding: 5px 10px;
+    border: 2px solid #000; 
+    border-radius: 10px; 
+    background-color: black; 
+    color: rgb(1,75,160); 
+    font-size: 25px;
+    box-shadow: 0 4px 8px rgb(247, 0, 255); 
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    margin-left: 200px;
+    transition: background-color 0.3s ease; 
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button4:hover {
+    background-color: #ffffff; 
+    color: black;
+    box-shadow: 0 4px 8px rgb(1,75,160); 
+}
+
+
+.burbuja-input:focus {
+    border-color: #00ff00; 
+    box-shadow: 0 0 10px #00ff00; 
+}
+
+
+.isinvalid {
+    border: 2px solid red;
+}
+
+.is-valid {
+    border: 2px solid #39FF14; 
+    background-color: #39FF1410; 
+    transition: border-color 0.3s, background-color 0.3s;
+}
